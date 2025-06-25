@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// ignore: must_be_immutable
 class Classroom extends StatelessWidget {
   const Classroom({super.key});
   final bool _isHovering = false;

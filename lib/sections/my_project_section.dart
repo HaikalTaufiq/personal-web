@@ -18,21 +18,21 @@ class MyProjectSection extends StatelessWidget {
       {
         "title":
             "Automatic Fish Feeder                                                                                     with IoT Based",
-        "page": FishFeederPage(),
+        "page": const FishFeederPage(),
         "description":
             "A mobile application integrated with IoT to control an automated fish feeding system, as well as monitor aquarium maintenance parameters such as temperature, humidity, and feed levels.",
         "img": "assets/project-details/fish.png",
       },
       {
         "title": "Unity 3D Fishing Game",
-        "page": FishingGame(),
+        "page": const FishingGame(),
         "description":
             "A 3D fishing game where the core gameplay revolves around fishing mechanics, and the game can be controlled using a joystick built with Arduino.",
         "img": "assets/project-details/game.png",
       },
       {
         "title": "E-Classroom with Flutter",
-        "page": Classroom(),
+        "page": const Classroom(),
         "description":
             "A mobile application designed to facilitate teaching and learning for teachers and students, featuring assignment upload and download, as well as task evaluation—similar to an e-learning platform.",
         "img": "assets/project-details/class.png",
@@ -40,7 +40,7 @@ class MyProjectSection extends StatelessWidget {
       {
         "title":
             "Garbage Payment                                                                                     Laravel Website",
-        "page": Garbage(),
+        "page": const Garbage(),
         "description":
             "A web-based platform for managing waste payments in a neighborhood, featuring monthly billing records, payment schedules, and garbage collection scheduling.",
         "img": "assets/project-details/11.png",
@@ -95,13 +95,19 @@ class MyProjectSection extends StatelessWidget {
             runSpacing: 20,
             alignment: WrapAlignment.center,
             children: projects.map((project) {
-              return ProjectCard(
-                title: project['title']?.toString() ?? 'Untitled',
-                destination: project['page'] ?? const SizedBox(),
-                description:
-                    project['description']?.toString() ?? 'No description',
-                img: project['img']?.toString() ?? 'assets/images/default.png',
-              );
+              try {
+                return ProjectCard(
+                  title: (project['title'] ?? 'Untitled').toString(),
+                  destination: project['page'] ?? const SizedBox(),
+                  description:
+                      (project['description'] ?? 'No description').toString(),
+                  img: (project['img'] ?? 'assets/images/default.png')
+                      .toString(),
+                );
+              } catch (e) {
+                debugPrint('Error saat buat ProjectCard: $e');
+                return const SizedBox(); // fallback
+              }
             }).toList(),
           ),
         ],
