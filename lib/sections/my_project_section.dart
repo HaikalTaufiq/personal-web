@@ -96,20 +96,27 @@ class MyProjectSection extends StatelessWidget {
             alignment: WrapAlignment.center,
             children: projects.map((project) {
               try {
+                final title = (project['title'] ?? 'Untitled').toString();
+                final description =
+                    (project['description'] ?? 'No description').toString();
+                final img =
+                    (project['img'] ?? 'assets/images/default.png').toString();
+
+                final page = project['page'];
+                final destination = page is Widget ? page : const SizedBox();
+
                 return ProjectCard(
-                  title: (project['title'] ?? 'Untitled').toString(),
-                  destination: project['page'] ?? const SizedBox(),
-                  description:
-                      (project['description'] ?? 'No description').toString(),
-                  img: (project['img'] ?? 'assets/images/default.png')
-                      .toString(),
+                  title: title,
+                  destination: destination,
+                  description: description,
+                  img: img,
                 );
               } catch (e) {
                 debugPrint('Error saat buat ProjectCard: $e');
-                return const SizedBox(); // fallback
+                return const SizedBox(); // fallback UI
               }
             }).toList(),
-          ),
+          )
         ],
       ),
     );
