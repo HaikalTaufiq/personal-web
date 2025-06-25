@@ -1,0 +1,45 @@
+name: personal_web
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  lottie: ^3.3.1
+  card_swiper: ^3.0.1
+  animated_text_kit: ^4.2.3
+  zo_animated_border: ^0.0.8
+  flutter_card_swiper: ^7.0.2
+  flutter_svg: ^2.1.0
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/json/
+    - assets/tech-stack/
+    - assets/project-details/
+    - assets/squarepants/
+    - assets/class/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Black.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+        - asset: assets/fonts/Poppins-ExtraLight.ttf
+        - asset: assets/fonts/Poppins-Light.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-SemiBold.ttf
