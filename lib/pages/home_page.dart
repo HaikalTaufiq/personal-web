@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage>
                         return Transform.translate(
                           offset: _animation.value,
                           child: Image.asset(
-                            'images/Ellipse.png',
+                            'assets/images/Ellipse.png',
                             width: 1100,
                             height: 1100,
                           ),

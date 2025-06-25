@@ -96,10 +96,11 @@ class MyProjectSection extends StatelessWidget {
             alignment: WrapAlignment.center,
             children: projects.map((project) {
               return ProjectCard(
-                title: project['title'],
-                destination: project['page'],
-                description: project['description'],
-                img: project['img'],
+                title: project['title']?.toString() ?? 'Untitled',
+                destination: project['page'] ?? const SizedBox(),
+                description:
+                    project['description']?.toString() ?? 'No description',
+                img: project['img']?.toString() ?? 'assets/images/default.png',
               );
             }).toList(),
           ),

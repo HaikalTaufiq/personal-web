@@ -77,8 +77,15 @@ class ContactSection extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: contactItems.map((item) {
+                    final iconPath =
+                        item['icon']?.toString() ?? 'assets/icons/default.svg';
+                    final text = item['text']?.toString() ?? 'No text';
+                    final url = item['url']?.toString() ?? '';
+
                     return GestureDetector(
-                      onTap: () => _launchUrl(item['url']),
+                      onTap: () {
+                        if (url.isNotEmpty) _launchUrl(url);
+                      },
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: Row(
@@ -89,7 +96,7 @@ class ContactSection extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: SvgPicture.asset(
-                                  item['icon'],
+                                  iconPath,
                                   colorFilter: const ColorFilter.mode(
                                       Colors.white, BlendMode.srcIn),
                                 ),
@@ -98,7 +105,7 @@ class ContactSection extends StatelessWidget {
                             SizedBox(width: isMobile ? 10 : 15),
                             Flexible(
                               child: Text(
-                                item['text'],
+                                text,
                                 style: TextStyle(
                                   fontSize: isMobile ? 16 : 30,
                                   letterSpacing: isMobile ? 0.5 : -1.5,
@@ -124,7 +131,7 @@ class ContactSection extends StatelessWidget {
                       ),
                     );
                   }).toList(),
-                ),
+                )
               ],
             ),
           ),
