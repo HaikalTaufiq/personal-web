@@ -82,10 +82,10 @@ class _ContactSectionState extends State<ContactSection> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: contactItems.map((item) {
-                    final iconPath =
-                        item['icon']?.toString() ?? 'assets/icons/default.svg';
-                    final text = item['text']?.toString() ?? 'No text';
-                    final url = item['url']?.toString() ?? '';
+                    final String iconPath =
+                        item['icon'] ?? 'assets/icons/default.svg';
+                    final String text = item['text'] ?? 'No text';
+                    final String url = item['url'] ?? '';
 
                     return GestureDetector(
                       onTap: () {
@@ -124,10 +124,9 @@ class _ContactSectionState extends State<ContactSection> {
                               padding: const EdgeInsets.only(left: 10),
                               child: Transform.rotate(
                                 angle: 45 * 3.1416 / 180,
-                                child: Icon(
+                                child: const Icon(
                                   Icons.arrow_upward,
-                                  color:
-                                      const Color.fromARGB(190, 255, 255, 255),
+                                  color: Color.fromARGB(190, 255, 255, 255),
                                 ),
                               ),
                             ),
