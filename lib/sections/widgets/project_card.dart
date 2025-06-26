@@ -26,8 +26,9 @@ class _ProjectCardState extends State<ProjectCard> {
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 600;
 
-    final hoverColor =
-        _isHovering ? const Color(0x14A0A0A0) : Color.fromARGB(72, 88, 88, 88);
+    final Color hoverColor = _isHovering
+        ? const Color(0x14A0A0A0)
+        : const Color.fromARGB(72, 88, 88, 88);
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovering = true),
@@ -47,15 +48,13 @@ class _ProjectCardState extends State<ProjectCard> {
           decoration: BoxDecoration(
             color: hoverColor,
             border: Border.all(
-              // ignore: deprecated_member_use
-              color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.2),
+              color: Colors.white.withOpacity(0.2),
               width: 1,
             ),
             borderRadius: BorderRadius.circular(20),
             boxShadow: _isHovering
                 ? [
                     BoxShadow(
-                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.5),
                       blurRadius: 14,
                       offset: const Offset(0, 8),
@@ -84,35 +83,25 @@ class _ProjectCardState extends State<ProjectCard> {
                       textAlign: TextAlign.start,
                     ),
                     const SizedBox(height: 10),
-                    if (isMobile)
-                      Text(
+                    SizedBox(
+                      width: isMobile ? double.infinity : 210,
+                      child: Text(
                         widget.description,
                         style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w100,
+                          fontSize: isMobile ? 13 : 12,
+                          fontWeight:
+                              isMobile ? FontWeight.w100 : FontWeight.w200,
                           fontFamily: 'Poppins',
-                          color: const Color.fromARGB(211, 255, 255, 255),
+                          color: const Color.fromARGB(220, 255, 255, 255),
                         ),
                         textAlign: TextAlign.start,
-                      )
-                    else
-                      SizedBox(
-                        width: 210,
-                        child: Text(
-                          widget.description,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w200,
-                            fontFamily: 'Poppins',
-                            color: const Color.fromARGB(229, 255, 255, 255),
-                          ),
-                          textAlign: TextAlign.start,
-                        ),
                       ),
+                    ),
                   ],
                 ),
               ),
 
+              // Gambar proyek (hanya di desktop)
               if (!isMobile)
                 Positioned(
                   bottom: 0,
@@ -136,7 +125,6 @@ class _ProjectCardState extends State<ProjectCard> {
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
-                            // ignore: deprecated_member_use
                             color: Colors.grey.withOpacity(0.2),
                             alignment: Alignment.center,
                             child: const Icon(Icons.broken_image,
@@ -148,7 +136,7 @@ class _ProjectCardState extends State<ProjectCard> {
                   ),
                 ),
 
-              // Tombol Navigasi
+              // Tombol panah
               Positioned(
                 right: 10,
                 top: 10,

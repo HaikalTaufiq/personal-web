@@ -23,7 +23,9 @@ class _HomePageState extends State<HomePage>
   late AnimationController _controller;
   late Animation<Offset> _animation;
   final GlobalKey contactKey = GlobalKey();
-
+  double _screenWidth = 0;
+  bool _isMobile = false;
+  bool _isTablet = false;
   bool _isHovering = false;
   final List<String> roles = [
     'Software Engineer',
@@ -81,29 +83,27 @@ class _HomePageState extends State<HomePage>
   }
 
   void _onScroll() {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth < 600;
     final position = _scrollController.offset;
-    if (isMobile) {
+
+    if (_isMobile) {
       if (position < 400) {
-        _updateSelectedIndex(0); // Home
+        _updateSelectedIndex(0);
       } else if (position < 800) {
-        _updateSelectedIndex(1); // About
+        _updateSelectedIndex(1);
       } else if (position < 2875) {
-        _updateSelectedIndex(2); // My Project
+        _updateSelectedIndex(2);
       } else {
-        _updateSelectedIndex(3); // Contact
+        _updateSelectedIndex(3);
       }
     } else {
-      // Desktop
       if (position < 700) {
-        _updateSelectedIndex(0); // Home
+        _updateSelectedIndex(0);
       } else if (position < 800) {
-        _updateSelectedIndex(1); // About
+        _updateSelectedIndex(1);
       } else if (position < 2000) {
-        _updateSelectedIndex(2); // My Project
+        _updateSelectedIndex(2);
       } else {
-        _updateSelectedIndex(3); // Contact
+        _updateSelectedIndex(3);
       }
     }
   }
@@ -124,9 +124,9 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final isMobile = screenWidth < 600;
-    final isTablet = screenWidth >= 600 && screenWidth < 1024;
+    _screenWidth = MediaQuery.of(context).size.width;
+    _isMobile = _screenWidth < 600;
+    _isTablet = _screenWidth >= 600 && _screenWidth < 1024;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -167,14 +167,14 @@ class _HomePageState extends State<HomePage>
                   const SizedBox(height: 150),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: isMobile
+                        horizontal: _isMobile
                             ? 20
-                            : isTablet
+                            : _isTablet
                                 ? 60
                                 : 130),
                     child: Stack(
                       children: [
-                        isMobile
+                        _isMobile
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -544,7 +544,7 @@ class _HomePageState extends State<HomePage>
                         SizedBox(
                           width: 200,
                         ),
-                        if (isMobile)
+                        if (_isMobile)
                           SizedBox()
                         else
                           Positioned(
@@ -563,7 +563,7 @@ class _HomePageState extends State<HomePage>
                       ],
                     ),
                   ),
-                  if (isMobile)
+                  if (_isMobile)
                     Positioned(
                       right: 10,
                       child: Lottie.asset(
@@ -573,7 +573,7 @@ class _HomePageState extends State<HomePage>
                         fit: BoxFit.contain,
                       ),
                     ),
-                  isMobile
+                  _isMobile
                       ? const SizedBox(
                           height: 60,
                         )
@@ -587,7 +587,7 @@ class _HomePageState extends State<HomePage>
             ),
 
             // ====== AppBar transparan dengan blur ======
-            if (isMobile)
+            if (_isMobile)
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 0),
                 child: ClipRRect(

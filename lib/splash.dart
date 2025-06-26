@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(vsync: this);
     _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
+      if (status == AnimationStatus.completed && mounted) {
         // Ganti ke halaman utama setelah animasi selesai
         Navigator.pushReplacement(
           context,

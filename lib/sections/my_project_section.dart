@@ -24,35 +24,35 @@ class _MyProjectSectionState extends State<MyProjectSection> {
         title: "Automatic Fish Feeder with IoT Based",
         page: const FishFeederPage(),
         description:
-            "A mobile application integrated with IoT to control an automated fish feeding system, as well as monitor aquarium maintenance parameters such as temperature, humidity, and feed levels.",
+            "A mobile app integrated with IoT to control and monitor an automatic fish feeder system remotely.",
         img: "assets/project-details/fish.webp",
       ),
       Project(
         title: "Unity 3D Fishing Game",
         page: const FishingGame(),
         description:
-            "A 3D fishing game where the core gameplay revolves around fishing mechanics, and the game can be controlled using a joystick built with Arduino.",
+            "A 3D fishing game where players catch fish using a joystick built with Arduino, focused on survival gameplay.",
         img: "assets/project-details/game.webp",
       ),
       Project(
         title: "E-Classroom with Flutter",
         page: const Classroom(),
         description:
-            "A mobile application designed to facilitate teaching and learning for teachers and students, featuring assignment upload and download, as well as task evaluation—similar to an e-learning platform.",
+            "A Flutter-based e-learning platform with task upload, download, evaluation, and course management.",
         img: "assets/project-details/class.webp",
       ),
       Project(
         title: "Garbage Payment Laravel Website",
         page: const Garbage(),
         description:
-            "A web-based platform for managing waste payments in a neighborhood, featuring monthly billing records, payment schedules, and garbage collection scheduling.",
+            "A Laravel app for managing waste payments in residential areas with payment tracking and scheduling.",
         img: "assets/project-details/11.webp",
       ),
       Project(
         title: "Room Booking Laravel Website",
         page: const Booking(),
         description:
-            "An internal room reservation platform for companies, allowing employees to submit booking requests, and manage scheduling and approvals efficiently to support better space utilization.",
+            "An internal company room reservation website for managing meeting schedules and booking approvals.",
         img: "assets/project-details/booking.webp",
       ),
     ];
@@ -60,14 +60,14 @@ class _MyProjectSectionState extends State<MyProjectSection> {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        vertical: isMobile ? 20 : 10,
+        vertical: isMobile ? 20 : 40,
         horizontal: isMobile ? 20 : 60,
       ),
       child: Column(
         children: [
           Center(
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(bottom: 20),
               child: RichText(
                 text: TextSpan(
                   style: TextStyle(
@@ -80,12 +80,11 @@ class _MyProjectSectionState extends State<MyProjectSection> {
                   children: const [
                     TextSpan(
                       text: 'My ',
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                      style: TextStyle(color: Colors.white),
                     ),
                     TextSpan(
                       text: 'Project',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Color(0xff00E5FF)),
                     ),
                   ],
                 ),
@@ -97,9 +96,6 @@ class _MyProjectSectionState extends State<MyProjectSection> {
             runSpacing: 20,
             alignment: WrapAlignment.center,
             children: projects.map((project) {
-              debugPrint("Project title: ${project.title}");
-              debugPrint("Page type: ${project.page.runtimeType}");
-              debugPrint("Image: ${project.img}");
               return ProjectCard(
                 title: project.title,
                 destination: project.page,

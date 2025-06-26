@@ -1,7 +1,7 @@
-// widgets/tech_stack.dart
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 
 class TechStack extends StatefulWidget {
   const TechStack({super.key});
@@ -11,8 +11,8 @@ class TechStack extends StatefulWidget {
 }
 
 class _TechStackState extends State<TechStack> {
-  late ScrollController _scrollController;
-  late Timer _scrollTimer;
+  late final ScrollController _scrollController;
+  Timer? _scrollTimer;
 
   final List<String> techIcons = [
     'assets/tech-stack/flutter.svg',
@@ -41,8 +41,8 @@ class _TechStackState extends State<TechStack> {
     const duration = Duration(milliseconds: 100);
     _scrollTimer = Timer.periodic(duration, (timer) {
       if (_scrollController.hasClients) {
-        double maxScroll = _scrollController.position.maxScrollExtent;
-        double currentScroll = _scrollController.offset;
+        final maxScroll = _scrollController.position.maxScrollExtent;
+        final currentScroll = _scrollController.offset;
 
         if (currentScroll >= maxScroll) {
           _scrollController.jumpTo(0);
@@ -59,9 +59,19 @@ class _TechStackState extends State<TechStack> {
 
   @override
   void dispose() {
-    _scrollTimer.cancel();
+    _scrollTimer?.cancel();
     _scrollController.dispose();
     super.dispose();
+  }
+
+  Future<bool> _checkAssetExists(String path) async {
+    try {
+      await rootBundle.load(path);
+      return true;
+    } catch (_) {
+      debugPrint('⚠️ Asset not found: $path');
+      return false;
+    }
   }
 
   @override
@@ -75,28 +85,39 @@ class _TechStackState extends State<TechStack> {
       child: ListView.builder(
         controller: _scrollController,
         scrollDirection: Axis.horizontal,
-        itemCount: techIcons.length * 2,
+        itemCount: techIcons.length * 2, // Loop dua kali untuk efek endless
         itemBuilder: (context, index) {
           final iconPath = techIcons[index % techIcons.length];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Container(
-              width: isMobile ? 50 : 60,
-              height: isMobile ? 50 : 60,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SvgPicture.asset(
-                  iconPath,
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcIn,
+          return FutureBuilder<bool>(
+            future: _checkAssetExists(iconPath),
+            builder: (context, snapshot) {
+              final assetExists = snapshot.data ?? false;
+              if (snapshot.connectionState == ConnectionState.done &&
+                  assetExists) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Container(
+                    width: isMobile ? 50 : 60,
+                    height: isMobile ? 50 : 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        iconPath,
+                        colorFilter: const ColorFilter.mode(
+                          Colors.white,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
+                );
+              } else {
+                return const SizedBox(); // Bisa diganti dengan icon fallback jika perlu
+              }
+            },
           );
         },
       ),

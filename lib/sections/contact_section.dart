@@ -44,6 +44,7 @@ class _ContactSectionState extends State<ContactSection> {
       width: double.infinity,
       child: Stack(
         children: [
+          // ==== Bagian Text & Kontak ====
           Padding(
             padding: EdgeInsets.only(
               top: isMobile ? 100 : 200,
@@ -53,47 +54,43 @@ class _ContactSectionState extends State<ContactSection> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          fontSize: isMobile ? 36 : 60,
-                          height: 1.4,
-                          letterSpacing: isMobile ? -1.0 : -3.5,
-                          fontWeight: FontWeight.w800,
-                          fontFamily: 'Poppins',
-                        ),
-                        children: [
-                          const TextSpan(
-                            text: 'Contact ',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          const TextSpan(
-                            text: 'Me',
-                            style: TextStyle(color: Color(0xff00E5FF)),
-                          ),
-                        ],
-                      ),
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontSize: isMobile ? 36 : 60,
+                      height: 1.4,
+                      letterSpacing: isMobile ? -1.0 : -3.5,
+                      fontWeight: FontWeight.w800,
+                      fontFamily: 'Poppins',
                     ),
-                  ],
+                    children: const [
+                      TextSpan(
+                        text: 'Contact ',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      TextSpan(
+                        text: 'Me',
+                        style: TextStyle(color: Color(0xff00E5FF)),
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(height: isMobile ? 30 : 15),
+                SizedBox(height: isMobile ? 30 : 20),
+
+                // ==== List Kontak ====
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: contactItems.map((item) {
-                    final String iconPath =
-                        item['icon'] ?? 'assets/icons/default.svg';
-                    final String text = item['text'] ?? 'No text';
-                    final String url = item['url'] ?? '';
+                    final iconPath = item['icon'] ?? 'assets/icons/default.svg';
+                    final text = item['text'] ?? 'No Text';
+                    final url = item['url'] ?? '';
 
                     return GestureDetector(
-                      onTap: () {
-                        if (url.isNotEmpty) _launchUrl(url);
-                      },
+                      onTap: () => _launchUrl(url),
                       child: Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.only(bottom: 14),
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
                               width: isMobile ? 40 : 50,
@@ -107,13 +104,13 @@ class _ContactSectionState extends State<ContactSection> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: isMobile ? 10 : 15),
+                            SizedBox(width: isMobile ? 10 : 20),
                             Flexible(
                               child: Text(
                                 text,
                                 style: TextStyle(
-                                  fontSize: isMobile ? 16 : 30,
-                                  letterSpacing: isMobile ? 0.5 : -1.5,
+                                  fontSize: isMobile ? 16 : 28,
+                                  letterSpacing: isMobile ? 0.5 : -1.0,
                                   color: Colors.white,
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w500,
@@ -124,9 +121,11 @@ class _ContactSectionState extends State<ContactSection> {
                               padding: const EdgeInsets.only(left: 10),
                               child: Transform.rotate(
                                 angle: 45 * 3.1416 / 180,
-                                child: const Icon(
+                                child: Icon(
                                   Icons.arrow_upward,
-                                  color: Color.fromARGB(190, 255, 255, 255),
+                                  size: isMobile ? 18 : 24,
+                                  color:
+                                      const Color.fromARGB(190, 255, 255, 255),
                                 ),
                               ),
                             ),
@@ -139,6 +138,8 @@ class _ContactSectionState extends State<ContactSection> {
               ],
             ),
           ),
+
+          // ==== Lottie Animation ====
           Positioned(
             right: isMobile ? 25 : 150,
             top: isMobile ? 400 : 120,
@@ -153,13 +154,17 @@ class _ContactSectionState extends State<ContactSection> {
       ),
     );
   }
-}
 
-Future<void> _launchUrl(String url) async {
-  final Uri uri = Uri.parse(url);
-  if (await canLaunchUrl(uri)) {
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
-  } else {
-    throw 'Could not launch $url';
+  Future<void> _launchUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        debugPrint("Could not launch $url");
+      }
+    } catch (e) {
+      debugPrint("Error launching URL: $e");
+    }
   }
 }
