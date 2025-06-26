@@ -6,9 +6,14 @@ import 'package:personal_web/sections/project_detail/fishing_game.dart';
 import 'package:personal_web/sections/project_detail/garbage.dart';
 import 'package:personal_web/sections/widgets/project_card.dart';
 
-class MyProjectSection extends StatelessWidget {
+class MyProjectSection extends StatefulWidget {
   const MyProjectSection({super.key});
 
+  @override
+  State<MyProjectSection> createState() => _MyProjectSectionState();
+}
+
+class _MyProjectSectionState extends State<MyProjectSection> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -45,7 +50,7 @@ class MyProjectSection extends StatelessWidget {
       ),
       Project(
         title: "Room Booking Laravel Website",
-        page: Booking(),
+        page: const Booking(),
         description:
             "An internal room reservation platform for companies, allowing employees to submit booking requests, and manage scheduling and approvals efficiently to support better space utilization.",
         img: "assets/project-details/booking.webp",
@@ -92,6 +97,9 @@ class MyProjectSection extends StatelessWidget {
             runSpacing: 20,
             alignment: WrapAlignment.center,
             children: projects.map((project) {
+              debugPrint("Project title: ${project.title}");
+              debugPrint("Page type: ${project.page.runtimeType}");
+              debugPrint("Image: ${project.img}");
               return ProjectCard(
                 title: project.title,
                 destination: project.page,

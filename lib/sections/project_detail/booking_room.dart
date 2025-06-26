@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Booking extends StatelessWidget {
+class Booking extends StatefulWidget {
   const Booking({super.key});
+
+  @override
+  State<Booking> createState() => _BookingState();
+}
+
+class _BookingState extends State<Booking> {
   final bool _isHovering = false;
 
   @override

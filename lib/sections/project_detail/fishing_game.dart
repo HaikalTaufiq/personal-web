@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class FishingGame extends StatelessWidget {
+class FishingGame extends StatefulWidget {
   const FishingGame({super.key});
+
+  @override
+  State<FishingGame> createState() => _FishingGameState();
+}
+
+class _FishingGameState extends State<FishingGame> {
   final bool _isHovering = false;
 
   @override

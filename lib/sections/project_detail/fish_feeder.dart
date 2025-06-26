@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class FishFeederPage extends StatelessWidget {
+class FishFeederPage extends StatefulWidget {
   const FishFeederPage({super.key});
+
+  @override
+  State<FishFeederPage> createState() => _FishFeederPageState();
+}
+
+class _FishFeederPageState extends State<FishFeederPage> {
   final bool _isHovering = false;
 
   @override

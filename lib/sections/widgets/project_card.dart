@@ -112,6 +112,8 @@ class _ProjectCardState extends State<ProjectCard> {
                   ],
                 ),
               ),
+
+              // Gambar hanya ditampilkan jika bukan mobile
               if (!isMobile)
                 Positioned(
                   bottom: 0,
@@ -119,8 +121,8 @@ class _ProjectCardState extends State<ProjectCard> {
                   child: Container(
                     width: 180,
                     height: 180,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         bottomRight: Radius.circular(18),
                       ),
@@ -133,26 +135,38 @@ class _ProjectCardState extends State<ProjectCard> {
                       child: Image.asset(
                         widget.img,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            // ignore: deprecated_member_use
+                            color: Colors.grey.withOpacity(0.2),
+                            alignment: Alignment.center,
+                            child: const Icon(Icons.broken_image,
+                                color: Colors.white70),
+                          );
+                        },
                       ),
                     ),
                   ),
                 ),
+
+              // Tombol Navigasi
               Positioned(
                 right: 10,
                 top: 10,
                 child: IconButton(
                   icon: Transform.rotate(
                     angle: 45 * 3.1416 / 180,
-                    child: Icon(
+                    child: const Icon(
                       Icons.arrow_upward,
-                      color: const Color.fromARGB(190, 255, 255, 255),
+                      color: Color.fromARGB(190, 255, 255, 255),
                     ),
                   ),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => widget.destination),
+                        builder: (context) => widget.destination,
+                      ),
                     );
                   },
                 ),

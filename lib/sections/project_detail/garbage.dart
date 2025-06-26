@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Garbage extends StatelessWidget {
+class Garbage extends StatefulWidget {
   const Garbage({super.key});
+
+  @override
+  State<Garbage> createState() => _GarbageState();
+}
+
+class _GarbageState extends State<Garbage> {
   final bool _isHovering = false;
 
   @override

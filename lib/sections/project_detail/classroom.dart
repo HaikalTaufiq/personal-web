@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Classroom extends StatelessWidget {
+class Classroom extends StatefulWidget {
   const Classroom({super.key});
+
+  @override
+  State<Classroom> createState() => _ClassroomState();
+}
+
+class _ClassroomState extends State<Classroom> {
   final bool _isHovering = false;
 
   @override

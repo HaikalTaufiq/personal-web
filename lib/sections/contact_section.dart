@@ -3,9 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContactSection extends StatelessWidget {
+class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
 
+  @override
+  State<ContactSection> createState() => _ContactSectionState();
+}
+
+class _ContactSectionState extends State<ContactSection> {
   final List<Map<String, dynamic>> contactItems = const [
     {
       'icon': 'assets/tech-stack/gmail.svg',
