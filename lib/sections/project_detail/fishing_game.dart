@@ -128,7 +128,7 @@ class FishingGame extends StatelessWidget {
             children: [
               SizedBox(
                 width: 680,
-                child: Image.asset('assets/images/Game.png'),
+                child: Image.asset('assets/images/Game.webp'),
               ),
             ],
           ),
@@ -227,7 +227,7 @@ class FishingGame extends StatelessWidget {
           Center(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
-              child: Image.asset('assets/images/Game.png'),
+              child: Image.asset('assets/images/Game.webp'),
             ),
           ),
         ],

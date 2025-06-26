@@ -4,7 +4,7 @@ import 'package:personal_web/sections/project_detail/classroom.dart';
 import 'package:personal_web/sections/project_detail/fish_feeder.dart';
 import 'package:personal_web/sections/project_detail/fishing_game.dart';
 import 'package:personal_web/sections/project_detail/garbage.dart';
-import 'package:personal_web/sections/widgets/project-card.dart';
+import 'package:personal_web/sections/widgets/project_card.dart';
 
 class MyProjectSection extends StatelessWidget {
   const MyProjectSection({super.key});
@@ -14,45 +14,42 @@ class MyProjectSection extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final isMobile = screenWidth < 600;
 
-    final List<Map<String, dynamic>> projects = [
-      {
-        "title":
-            "Automatic Fish Feeder                                                                                     with IoT Based",
-        "page": const FishFeederPage(),
-        "description":
+    final List<Project> projects = [
+      Project(
+        title: "Automatic Fish Feeder with IoT Based",
+        page: const FishFeederPage(),
+        description:
             "A mobile application integrated with IoT to control an automated fish feeding system, as well as monitor aquarium maintenance parameters such as temperature, humidity, and feed levels.",
-        "img": "assets/project-details/fish.png",
-      },
-      {
-        "title": "Unity 3D Fishing Game",
-        "page": const FishingGame(),
-        "description":
+        img: "assets/project-details/fish.webp",
+      ),
+      Project(
+        title: "Unity 3D Fishing Game",
+        page: const FishingGame(),
+        description:
             "A 3D fishing game where the core gameplay revolves around fishing mechanics, and the game can be controlled using a joystick built with Arduino.",
-        "img": "assets/project-details/game.png",
-      },
-      {
-        "title": "E-Classroom with Flutter",
-        "page": const Classroom(),
-        "description":
+        img: "assets/project-details/game.webp",
+      ),
+      Project(
+        title: "E-Classroom with Flutter",
+        page: const Classroom(),
+        description:
             "A mobile application designed to facilitate teaching and learning for teachers and students, featuring assignment upload and download, as well as task evaluation—similar to an e-learning platform.",
-        "img": "assets/project-details/class.png",
-      },
-      {
-        "title":
-            "Garbage Payment                                                                                     Laravel Website",
-        "page": const Garbage(),
-        "description":
+        img: "assets/project-details/class.webp",
+      ),
+      Project(
+        title: "Garbage Payment Laravel Website",
+        page: const Garbage(),
+        description:
             "A web-based platform for managing waste payments in a neighborhood, featuring monthly billing records, payment schedules, and garbage collection scheduling.",
-        "img": "assets/project-details/11.png",
-      },
-      {
-        "title":
-            "Room Booking                                                                                     Laravel Website",
-        "page": Booking(),
-        "description":
+        img: "assets/project-details/11.webp",
+      ),
+      Project(
+        title: "Room Booking Laravel Website",
+        page: Booking(),
+        description:
             "An internal room reservation platform for companies, allowing employees to submit booking requests, and manage scheduling and approvals efficiently to support better space utilization.",
-        "img": "assets/project-details/booking.png",
-      },
+        img: "assets/project-details/booking.webp",
+      ),
     ];
 
     return Container(
@@ -95,30 +92,30 @@ class MyProjectSection extends StatelessWidget {
             runSpacing: 20,
             alignment: WrapAlignment.center,
             children: projects.map((project) {
-              try {
-                final title = (project['title'] ?? 'Untitled').toString();
-                final description =
-                    (project['description'] ?? 'No description').toString();
-                final img =
-                    (project['img'] ?? 'assets/images/default.png').toString();
-
-                final page = project['page'];
-                final destination = page is Widget ? page : const SizedBox();
-
-                return ProjectCard(
-                  title: title,
-                  destination: destination,
-                  description: description,
-                  img: img,
-                );
-              } catch (e) {
-                debugPrint('Error saat buat ProjectCard: $e');
-                return const SizedBox(); // fallback UI
-              }
+              return ProjectCard(
+                title: project.title,
+                destination: project.page,
+                description: project.description,
+                img: project.img,
+              );
             }).toList(),
           )
         ],
       ),
     );
   }
+}
+
+class Project {
+  final String title;
+  final String description;
+  final String img;
+  final Widget page;
+
+  Project({
+    required this.title,
+    required this.description,
+    required this.img,
+    required this.page,
+  });
 }

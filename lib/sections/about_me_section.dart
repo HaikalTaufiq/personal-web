@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-import 'package:personal_web/sections/widgets/tech-stack.dart';
+import 'package:personal_web/sections/widgets/tech_stack.dart';
 
 class AboutMeSection extends StatefulWidget {
   const AboutMeSection({super.key});
@@ -20,7 +20,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12))),
       child: Image(
-        image: AssetImage('assets/images/sertif-2.png'),
+        image: AssetImage('assets/images/sertif-2.webp'),
       ),
     ),
     Container(
@@ -28,7 +28,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12))),
       child: Image(
-        image: AssetImage('assets/images/sertif-RV.jpg'),
+        image: AssetImage('assets/images/sertif-RV.webp'),
       ),
     ),
     Container(
@@ -36,7 +36,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12))),
       child: Image(
-        image: AssetImage('assets/images/sertif-IT.jpg'),
+        image: AssetImage('assets/images/sertif-IT.webp'),
       ),
     ),
     Container(
@@ -44,7 +44,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12))),
       child: Image(
-        image: AssetImage('assets/images/MTKH.png'),
+        image: AssetImage('assets/images/MTKH.webp'),
       ),
     ),
     Container(
@@ -52,7 +52,7 @@ class _AboutMeSectionState extends State<AboutMeSection>
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12))),
       child: Image(
-        image: AssetImage('assets/images/sertif-ML.jpg'),
+        image: AssetImage('assets/images/sertif-ML.webp'),
       ),
     ),
     Container(
@@ -60,18 +60,18 @@ class _AboutMeSectionState extends State<AboutMeSection>
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12))),
       child: Image(
-        image: AssetImage('assets/images/sertif-KR.jpg'),
+        image: AssetImage('assets/images/sertif-KR.webp'),
       ),
     ),
   ];
 
   List<String> imagePaths = [
-    'assets/images/sertif-2.png',
-    'assets/images/sertif-RV.jpg',
-    'assets/images/sertif-IT.jpg',
-    'assets/images/MTKH.png',
-    'assets/images/sertif-ML.jpg',
-    'assets/images/sertif-KR.jpg',
+    'assets/images/sertif-2.webp',
+    'assets/images/sertif-RV.webp',
+    'assets/images/sertif-IT.webp',
+    'assets/images/MTKH.webp',
+    'assets/images/sertif-ML.webp',
+    'assets/images/sertif-KR.webp',
   ];
 
   final List<String> certificateTitles = [
@@ -215,16 +215,15 @@ class _AboutMeSectionState extends State<AboutMeSection>
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.only(top: 100, left: 80),
-          child: Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 130, top: 80),
+          padding: const EdgeInsets.only(top: 180),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 1200),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       RichText(
                         text: TextSpan(

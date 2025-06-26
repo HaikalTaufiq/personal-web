@@ -128,7 +128,7 @@ class Booking extends StatelessWidget {
             children: [
               SizedBox(
                 width: 820,
-                child: Image.asset('assets/images/Booking.png'),
+                child: Image.asset('assets/images/Booking.webp'),
               ),
             ],
           ),
@@ -226,7 +226,7 @@ class Booking extends StatelessWidget {
           Center(
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
-              child: Image.asset('assets/images/Booking.png'),
+              child: Image.asset('assets/images/Booking.webp'),
             ),
           ),
         ],

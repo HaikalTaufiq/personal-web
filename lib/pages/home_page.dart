@@ -146,9 +146,10 @@ class _HomePageState extends State<HomePage>
                         return Transform.translate(
                           offset: _animation.value,
                           child: Image.asset(
-                            'assets/images/Ellipse.png',
+                            'assets/images/Ellipse.webp',
                             width: 1100,
                             height: 1100,
+                            fit: BoxFit.contain,
                           ),
                         );
                       },

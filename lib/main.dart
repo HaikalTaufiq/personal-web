@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:personal_web/pages/home_page.dart';
+import 'package:personal_web/splash.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,7 +12,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }
