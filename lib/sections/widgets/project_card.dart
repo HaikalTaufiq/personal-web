@@ -113,41 +113,39 @@ class _ProjectCardState extends State<ProjectCard> {
                 ),
               ),
 
-              // Gambar hanya ditampilkan jika bukan mobile
-              if (!isMobile)
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    width: 180,
-                    height: 180,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(18),
-                      ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Container(
+                  width: 180,
+                  height: 180,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(18),
                     ),
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(18),
-                      ),
-                      child: Image.asset(
-                        widget.img,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            // ignore: deprecated_member_use
-                            color: Colors.grey.withOpacity(0.2),
-                            alignment: Alignment.center,
-                            child: const Icon(Icons.broken_image,
-                                color: Colors.white70),
-                          );
-                        },
-                      ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(18),
+                    ),
+                    child: Image.asset(
+                      widget.img,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          // ignore: deprecated_member_use
+                          color: Colors.grey.withOpacity(0.2),
+                          alignment: Alignment.center,
+                          child: const Icon(Icons.broken_image,
+                              color: Colors.white70),
+                        );
+                      },
                     ),
                   ),
                 ),
+              ),
 
               // Tombol Navigasi
               Positioned(
